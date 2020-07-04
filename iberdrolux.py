@@ -138,16 +138,34 @@ def calculateCostForDay(hourly_consumption, power, powerPrice, normalPrice, disc
   for hour_consumption in hourly_consumption:
 
     if (len(str(beginDiscountHour)) == 0 && len(str(endDiscountHour)) == 0):
+      # There aren't any discount hours:
+
       cost += normalPrice * (float(hour_consumption) / WH_TO_KWH)
 
     else if (len(str(beginDiscountHour)) != 0 && len(str(endDiscountHour)) != 0):
+      # There are discount hours:
 
-      if (hour >= beginDiscountHour && hour <= endDiscountHour):
-        cost += discountedPrice * (float(hour_consumption) / WH_TO_KWH)
+      if (beginDiscountHour < endDiscountHour):
+        # Range of discount hours do not overlap with the following day:
+        # AND to join both conditions within one day:
+
+        if (hour >= beginDiscountHour && hour <= endDiscountHour):
+          cost += discountedPrice * (float(hour_consumption) / WH_TO_KWH)
+        else:
+          cost += normalPrice * (float(hour_consumption) / WH_TO_KWH)
+
       else:
-        cost += normalPrice * (float(hour_consumption) / WH_TO_KWH)
+        # Range of discount hours overlap with the following day:
+        # OR to join both conditions across two days:
+
+        if (hour >= beginDiscountHour || hour <= endDiscountHour):
+          cost += discountedPrice * (float(hour_consumption) / WH_TO_KWH)
+        else:
+          cost += normalPrice * (float(hour_consumption) / WH_TO_KWH)
 
     else:
+      # There is only one discount hour limit, so the other is missing:
+
       print("Falta uno de los límites de las horas de bonificación")
       sys.exit()
 
