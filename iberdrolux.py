@@ -29,7 +29,12 @@ class Day:
     self.num = num
     self.cost = 0.00
     self.consumption = 0.00
-    self.hourly_consumption = None
+    self.hourly_consumption = []
+
+  def __str__(self):
+    print("Día " + str(self.num) + ":")
+    print("Coste: " + str(self.cost))
+    print("Consumo: " + str(self.consumption))
 
 class Month:
 
@@ -37,16 +42,15 @@ class Month:
     self.num = num
     self.cost = 0.00
     self.consumption = 0.00
-    self.days = None
+    self.days = []
 
 class Year:
 
   def __init__(self, num):
     self.num = num
-    self.offset = offset
     self.cost = 0.00
     self.consumption = 0.00
-    self.months = None
+    self.months = []
 
 # Functions:
 
@@ -126,7 +130,7 @@ def getFile(filename):
 def getNumberDaysForYear(year):
   if (getNumberDaysForMonth(2, year) == DAYS_NORMAL_FEBRUARY):
     return DAYS_NORMAL_YEAR
-  else if (getNumberDaysForMonth(2, year) == DAYS_LEAP_FEBRUARY):
+  elif (getNumberDaysForMonth(2, year) == DAYS_LEAP_FEBRUARY):
     return DAYS_LEAP_YEAR
 
 
@@ -137,31 +141,36 @@ def calculateCostForDay(hourly_consumption, power, powerPrice, normalPrice, disc
   hour = 0
   for hour_consumption in hourly_consumption:
 
-    if (len(str(beginDiscountHour)) == 0 && len(str(endDiscountHour)) == 0):
+    if (len(str(beginDiscountHour)) == 0 and len(str(endDiscountHour)) == 0):
       # There aren't any discount hours:
 
-      cost += normalPrice * (float(hour_consumption) / WH_TO_KWH)
+      cost += normalPrice * float(hour_consumption)
 
-    else if (len(str(beginDiscountHour)) != 0 && len(str(endDiscountHour)) != 0):
+    elif (len(str(beginDiscountHour)) != 0 and len(str(endDiscountHour)) != 0):
       # There are discount hours:
 
       if (beginDiscountHour < endDiscountHour):
         # Range of discount hours do not overlap with the following day:
         # AND to join both conditions within one day:
 
-        if (hour >= beginDiscountHour && hour <= endDiscountHour):
-          cost += discountedPrice * (float(hour_consumption) / WH_TO_KWH)
+        if (hour >= beginDiscountHour and hour <= endDiscountHour):
+          cost += discountedPrice * float(hour_consumption)
         else:
-          cost += normalPrice * (float(hour_consumption) / WH_TO_KWH)
+          cost += normalPrice * float(hour_consumption)
 
       else:
         # Range of discount hours overlap with the following day:
         # OR to join both conditions across two days:
 
-        if (hour >= beginDiscountHour || hour <= endDiscountHour):
-          cost += discountedPrice * (float(hour_consumption) / WH_TO_KWH)
+        if (hour >= beginDiscountHour or hour <= endDiscountHour):
+          print("HOLA")
+          print(float(hour_consumption))
+          print(discountedPrice)
+          print(cost)
+          cost += discountedPrice * float(hour_consumption)
+          print(cost)
         else:
-          cost += normalPrice * (float(hour_consumption) / WH_TO_KWH)
+          cost += normalPrice * float(hour_consumption)
 
     else:
       # There is only one discount hour limit, so the other is missing:
@@ -185,9 +194,7 @@ def getNextMonth(month):
 
 # Entry point:
 
-#firstDay, firstMonth, year, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename = showMenu()
-
-filename = "test_2017.json"
+firstDay, firstMonth, year, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename = showMenu()
 hours = getFile(filename)
 
 if (firstDay > getNumberDaysForMonth(firstMonth, year)):
@@ -204,11 +211,11 @@ year = Year(numYear)
 
 for hour in hours:
 
-  day.hourly_consumption.append(float(hour['valor']))
+  day.hourly_consumption.append(float(hour['valor']) / WH_TO_KWH)
 
   if (len(day.hourly_consumption) == HOURS_IN_DAY or hour == hours[-1]):
-    day.consumption = sum(day.hourly_consumption)
-    day.cost = calculateCostForDay(day.hourly_consumption, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, year)
+    day.consumption = sum(day.hourly_consumption) / WH_TO_KWH
+    day.cost = calculateCostForDay(day.hourly_consumption, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, numYear)
 
     month.days.append(day)
     numDay += 1
@@ -222,4 +229,10 @@ for hour in hours:
         year = Year(numYear)
       month = Month(numMonth)
 
+    print(day)
     day = Day(numDay)
+
+print(year)
+print(month)
+print(day)
+print(day)
