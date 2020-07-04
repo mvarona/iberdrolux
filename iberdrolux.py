@@ -32,9 +32,10 @@ class Day:
     self.hourly_consumption = []
 
   def __str__(self):
-    print("Día " + str(self.num) + ":")
-    print("Coste: " + str(self.cost))
-    print("Consumo: " + str(self.consumption))
+    string = "Día " + str(self.num) + ":\n"
+    string += "Coste: " + str(self.cost) + "\n"
+    string += "Consumo: " + str(self.consumption) + "\n"
+    return string
 
 class Month:
 
@@ -163,12 +164,7 @@ def calculateCostForDay(hourly_consumption, power, powerPrice, normalPrice, disc
         # OR to join both conditions across two days:
 
         if (hour >= beginDiscountHour or hour <= endDiscountHour):
-          print("HOLA")
-          print(float(hour_consumption))
-          print(discountedPrice)
-          print(cost)
           cost += discountedPrice * float(hour_consumption)
-          print(cost)
         else:
           cost += normalPrice * float(hour_consumption)
 
@@ -194,7 +190,18 @@ def getNextMonth(month):
 
 # Entry point:
 
-firstDay, firstMonth, year, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename = showMenu()
+#firstDay, firstMonth, year, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename = showMenu()
+
+firstDay = firstMonth = 1
+year = 2017
+power = 4.6
+powerPrice = 57.23
+normalPrice = 0.171166
+discountedPrice = 0.085875
+beginDiscountHour = 22
+endDiscountHour = 13
+filename = "test_1_1_2017.json"
+
 hours = getFile(filename)
 
 if (firstDay > getNumberDaysForMonth(firstMonth, year)):
@@ -214,7 +221,7 @@ for hour in hours:
   day.hourly_consumption.append(float(hour['valor']) / WH_TO_KWH)
 
   if (len(day.hourly_consumption) == HOURS_IN_DAY or hour == hours[-1]):
-    day.consumption = sum(day.hourly_consumption) / WH_TO_KWH
+    day.consumption = sum(day.hourly_consumption)
     day.cost = calculateCostForDay(day.hourly_consumption, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, numYear)
 
     month.days.append(day)
