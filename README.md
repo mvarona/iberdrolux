@@ -1,19 +1,26 @@
-<img src="images/logo.png" alt="Iberdrolux logo" width="200"/>
+<img src="images/logo.png" alt="Logo de Iberdrolux" width="200"/>
 
 # Iberdrolux
-Calculador de precios para tarifas eléctricas usando datos de consumos horarios anteriores obtenidos de Iberdrola Distribuidora (i-de.es)
+Calculador de precios para tarifas eléctricas usando datos de consumos horarios anteriores obtenidos de Iberdrola Distribución Eléctrica (i-de.es)
 
 # Propósito:
-Programa que muestra el consumo en Kilowatios y calcula el precio que se habría obtenido con la tarifa introducida por el usuario, para el periodo determinado en base a los datos de consumos anteriores extraídos del Área Clientes para Particulares de Iberdrola Distribuidora.
-El programa aplica la tarifa deseada a los datos de consumo horario proporcionados por Iberdrola Distribuidora. Más abajo se detalla cómo obtener estos datos.
+Programa que muestra el consumo en Kilowatios y calcula el precio que se habría obtenido con la tarifa introducida por el usuario, para el periodo determinado en base a los datos de consumos anteriores extraídos del Área Clientes para Particulares de Iberdrola Distribución Eléctrica.
+El programa aplica la tarifa deseada a los datos de consumo horario proporcionados por Iberdrola Distribución Eléctrica. Más abajo se detalla cómo obtener estos datos.
 
 Tras ejecutarlo, se obtendrá algo como lo siguiente:
 
-<img src="images/output.png" alt="Iberdrolux output" width="00"/>
+<img src="images/output.png" alt="Resultado de Iberdrolux" width="600"/>
+
+Independientemente de la empresa que te comercialice la electricidad, este programa sólo funciona con datos de consumo procedentes de Iberdrola Distribución Eléctrica. En España, las distribudoras eléctricas se distribuyen por zonas geográficas, atendiendo aproximadamente al siguiente reparto:
+
+<img src="images/mapa-distribuidoras.png" alt="Mapa de distribuidoras eléctricas en España" width="300"/>
+(Fuente: https://alcanzia.es/blog/distribuidoras-electricas-en-espana-por-zonas/)
+
+Puedes consultar cuál es tu distribuidora a través del CUPS o contactando con tu comercializadora.
 
 # Instrucciones:
 ### 1. Registro en Iberdrola Distribuidora
-En primer lugar, es necesario estar **registrado en el área clientes** de **Iberdrola Distribuidora** (https://www.i-de.es). La cuenta **no es la misma que la de la comercializadora Iberdrola** (https://www.iberdrola.es). Si no estás registrado, puedes hacerlo desde https://www.i-de.es/consumidores/web/guest/register?start=false. Para completar el registro necesitarás:
+En primer lugar, es necesario estar **registrado en el área clientes** de **I-DE** (https://www.i-de.es). La cuenta **no es la misma que la de la comercializadora Iberdrola** (https://www.iberdrola.es). Si no estás registrado, puedes hacerlo desde https://www.i-de.es/consumidores/web/guest/register?start=false. Para completar el registro necesitarás:
     - Una factura de luz (donde figura el CUPS)
     - Tu móvil
     - Tu correo electónico
