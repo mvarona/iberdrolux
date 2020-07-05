@@ -35,4 +35,6 @@ Modificando los valores '01-01-201900:00:00' y '31-12-201900:00:00' en función 
 **Clona el repositorio** desde la consola de tu ordenador, o descarga el proyecto como un zip desde el botón *Code > Download ZIP*. Descomprime el proyecto y coloca el archivo *.json* que descargaste en el paso anterior en la misma carpeta que *iberdrolux.py*.
 
 ### 6. Ejecuta Iberdrolux
-Ejecuta **py -3 iberdrolux.py** en Windows, o **python3 iberdrolux.py** en Unix. Es posible que para ello tengas que asignarle permiso de ejecución al archivo o instalar 'Python 3'. Ejecutar un archivo de Python es muy fácil en cualquier sistema operativo, tienes más información de cómo hacerlo aquí: https://robustiana.com/325-ejecutar-scripts-python-windows-y-ubuntu. Instalar Python 3 es muy fácil en cualquier sistema operativo, tienes más información de cómo hacerlo aquí: https://tecnonucleous.com/2018/01/28/como-instalar-pip-para-python-en-windows-mac-y-linux/
+Ejecuta **py -3 iberdrolux.py** en Windows, o **python3 iberdrolux.py** en Unix. Es posible que para ello tengas que asignarle permiso de ejecución al archivo o instalar 'Python 3'.
+Ejecutar un archivo de Python es muy fácil en cualquier sistema operativo, tienes más información de cómo hacerlo aquí: https://robustiana.com/325-ejecutar-scripts-python-windows-y-ubuntu.
+Instalar Python 3 es muy fácil en cualquier sistema operativo, tienes más información de cómo hacerlo aquí: https://tecnonucleous.com/2018/01/28/como-instalar-pip-para-python-en-windows-mac-y-linux/
