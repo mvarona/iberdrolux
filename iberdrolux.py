@@ -97,9 +97,10 @@ def showMenu():
   print("de Iberdrola Distribuidora (i-de.es) **")
   print("* Mario Varona *")
   print("")
-  print("Recuerde que el programa calcula una tarifa ad-hoc por ejecución, por lo que en caso de aplicarse más de una tarifa distinta en la factura anual (por ejemplo, horarios distintos en invierno o en verano), se debe fragmentar el conjunto de datos y aplicar individualmente el cálculo a cada fragmento. Es decir, en el caso de una factura anual con distinción estacionaria, se debería usar un conjunto de datos para invierno y otro para verano.")
+  print("Recuerde que el programa calcula una tarifa ad-hoc por ejecución,\npor lo que en caso de aplicarse más de una tarifa distinta en la factura anual (por ejemplo, horarios distintos en\ninvierno o en verano), se debe fragmentar el conjunto de datos y aplicar individualmente el cálculo a cada fragmento.\nEs decir, en el caso de una factura anual con distinción estacionaria, se debería usar un conjunto de datos\npara invierno y otro para verano.")
   print("")
   print("Recuerde que las unidades de consumo del conjunto de datos deben estar en W/h")
+  print("")
 
   firstDay = ensureInputRange("Introduzca el primer día del conjunto de datos (1-31): ", MIN_DAY, MAX_DAY)
   firstMonth = ensureInputRange("Introduzca el primer mes del conjunto de datos (1-12): ", MIN_MONTH, MAX_MONTH)
