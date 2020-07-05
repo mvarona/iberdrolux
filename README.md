@@ -64,3 +64,5 @@ En el repositorio encontrarás también archivos de muestra (*test_1_1_2017.json
 Además, el archivo de Excel *test_dia.xlsx* permite calcular de forma más gráfica los valores para un día concreto, introduciendo los mismos valores de entrada por parte del usuario.
 
 Recuerde que el programa calcula una tarifa ad-hoc por ejecución, por lo que en caso de aplicarse más de una tarifa distinta en la factura anual (por ejemplo, horarios distintos en invierno o en verano), se debe fragmentar el conjunto de datos y aplicar individualmente el cálculo a cada fragmento. Es decir, en el caso de una factura anual con distinción estacionaria, se debería usar un conjunto de datos para invierno y otro para verano.
+
+Recuerde que las unidades de consumo del conjunto de datos deben estar en W/h
