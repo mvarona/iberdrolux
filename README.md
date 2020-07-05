@@ -13,7 +13,7 @@ Tras ejecutarlo, se obtendrá algo como lo siguiente:
 
 Independientemente de la empresa que te comercialice la electricidad, este programa sólo funciona con datos de consumo procedentes de Iberdrola Distribución Eléctrica. En España, las distribudoras eléctricas se distribuyen por zonas geográficas, atendiendo aproximadamente al siguiente reparto:
 
-<img src="images/mapa-distribuidoras.png" alt="Mapa de distribuidoras eléctricas en España" width="300"/>
+<img src="images/mapa-distribuidoras.jpg" alt="Mapa de distribuidoras eléctricas en España" width="300"/>
 (Fuente: https://alcanzia.es/blog/distribuidoras-electricas-en-espana-por-zonas/)
 
 <br/>
