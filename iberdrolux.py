@@ -14,6 +14,7 @@ MIN_MONTH = 1
 MAX_MONTH = 12
 MIN_YEAR = 1900
 MAX_YEAR = 2100
+MIN_SHOW_DETAILED = 1
 DAYS_NORMAL_FEBRUARY = 28
 DAYS_NORMAL_YEAR = 365
 DAYS_LEAP_FEBRUARY = 29
@@ -30,12 +31,6 @@ class Day:
     self.cost = 0.00
     self.consumption = 0.00
     self.hourly_consumption = []
-
-  def __str__(self):
-    string = "Día " + str(self.num) + ":\n"
-    string += "Coste: " + str(self.cost) + "\n"
-    string += "Consumo: " + str(self.consumption) + "\n"
-    return string
 
 class Month:
 
@@ -116,8 +111,12 @@ def showMenu():
   beginDiscountHour = ensureInputRangeEmpty("Introduzca la hora de comienzo del precio bonificado (0-23, deje en blanco si no hay precio bonificado): ", MIN_HOUR, MAX_HOUR)
   endDiscountHour = ensureInputRangeEmpty("Introduzca la hora de fin del precio bonificado (0-23, deje en blanco si no hay precio bonificado): ", MIN_HOUR, MAX_HOUR)
   filename = ensureString("Introduzca el nombre del archivo .json donde se encuentra el conjunto de datos: ")
+  showDetailed = ensureInputRangeEmpty("Introduzca un 1 si quiere que se muestre el cálculo detallado para cada día. Deje en blanco si quiere el cálculo resumido por mes: ", MIN_SHOW_DETAILED, MIN_SHOW_DETAILED)
 
-  return firstDay, firstMonth, year, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename
+  if (len(str(showDetailed)) == 0):
+    showDetailed = 0
+
+  return firstDay, firstMonth, year, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename, showDetailed
 
 
 def getFile(filename):
@@ -188,19 +187,71 @@ def getNextMonth(month):
   return nextMonth
 
 
+def getNameForMonth(month):
+  if (month == 1):
+    return "Enero"
+  if (month == 2):
+    return "Febrero"
+  if (month == 3):
+    return "Marzo"
+  if (month == 4):
+    return "Abril"
+  if (month == 5):
+    return "Mayo"
+  if (month == 6):
+    return "Junio"
+  if (month == 7):
+    return "Julio"
+  if (month == 8):
+    return "Agosto"
+  if (month == 9):
+    return "Septiembre"
+  if (month == 10):
+    return "Octubre"
+  if (month == 11):
+    return "Noviembre"
+  if (month == 12):
+    return "Diciembre"
+
+
+def showSummary(power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename):
+  print("")
+  print("* Para los siguientes datos de entrada: *")
+  print("Potencia contratada: " + str(power) + " kW/año")
+  print("Precio kW/año de potencia contratada: " + str(powerPrice) + " €")
+  print("Precio kW/hora consumido durante horas no bonificadas: " + str(normalPrice) + " €")
+  print("Precio kW/hora consumido durante horas bonificadas: " + str(discountedPrice) + " €")
+  print("Inicio horas bonificadas: " + str(beginDiscountHour) + " h")
+  print("Fin horas bonificadas: " + str(endDiscountHour) + " h")
+  print("Datos de consumo del archivo: " + filename)
+  print("")
+  print("* Se ha calculado un consumo estimado de: *")
+
+
+def showCalc(result, showDetailed):
+  for year in result:
+    print("")
+    print("• AÑO " + str(year.num) + ":")
+    print("  - Consumo: " + str(float("{:.3f}".format(year.consumption))) + " kW/hora")
+    print("  -   Coste: " + str(float("{:.2f}".format(year.cost))) + " €")
+
+    for month in year.months:
+      print("")
+      print("    • " + getNameForMonth(month.num) + ":")
+      print("      - Consumo: " + str(float("{:.3f}".format(month.consumption))) + " kW/hora")
+      print("      -   Coste: " + str(float("{:.2f}".format(month.cost))) + " €")
+
+      if (showDetailed == 1):
+        for day in month.days:
+          print("")
+          print("      • Día " + str(day.num) + ":")
+          print("        - Consumo: " + str(float("{:.3f}".format(day.consumption))) + " kW/hora")
+          print("        -   Coste: " + str(float("{:.2f}".format(day.cost))) + " €")
+
+
 # Entry point:
 
-#firstDay, firstMonth, year, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename = showMenu()
-
-firstDay = firstMonth = 1
-year = 2017
-power = 4.6
-powerPrice = 57.23
-normalPrice = 0.171166
-discountedPrice = 0.085875
-beginDiscountHour = 22
-endDiscountHour = 13
-filename = "test_1_1_2017.json"
+firstDay, firstMonth, year, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename, showDetailed = showMenu()
 
 hours = getFile(filename)
 
@@ -216,6 +267,8 @@ day = Day(numDay)
 month = Month(numMonth)
 year = Year(numYear)
 
+result = []
+
 for hour in hours:
 
   day.hourly_consumption.append(float(hour['valor']) / WH_TO_KWH)
@@ -227,8 +280,31 @@ for hour in hours:
     month.days.append(day)
     numDay += 1
 
-    if (numDay == getNumberDaysForMonth(numMonth, numYear)):
+    if (numDay > getNumberDaysForMonth(numMonth, numYear) or hour == hours[-1]):
+      month_consumption = 0
+      month_cost = 0
+
+      for month_day in month.days:
+        month_consumption += month_day.consumption
+        month_cost += month_day.cost
+
+      month.consumption = month_consumption
+      month.cost = month_cost
+
       year.months.append(month)
+
+      year_consumption = 0
+      year_cost = 0
+
+      for year_month in year.months:
+        year_consumption += year_month.consumption
+        year_cost += year_month.cost
+
+      year.consumption = year_consumption
+      year.cost = year_cost
+
+      result.append(year)
+
       numDay = MIN_DAY
       numMonth = getNextMonth(numMonth)
       if (numMonth == MIN_MONTH):
@@ -236,10 +312,7 @@ for hour in hours:
         year = Year(numYear)
       month = Month(numMonth)
 
-    print(day)
     day = Day(numDay)
 
-print(year)
-print(month)
-print(day)
-print(day)
+showSummary(power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, filename)
+showCalc(result, showDetailed)
