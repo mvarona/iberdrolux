@@ -40,3 +40,8 @@ Ejecuta **py -3 iberdrolux.py** en Windows, o **python3 iberdrolux.py** en Unix.
 Ejecutar un archivo de Python es muy fácil en cualquier sistema operativo, tienes más información de cómo hacerlo aquí: https://robustiana.com/325-ejecutar-scripts-python-windows-y-ubuntu.
 
 Instalar Python 3 es muy fácil en cualquier sistema operativo, tienes más información de cómo hacerlo aquí: https://tecnonucleous.com/2018/01/28/como-instalar-pip-para-python-en-windows-mac-y-linux/
+
+### ¿La URL para obtener el consumo horario ya no funciona?
+Abre un issue o escribeme a m.varona@bmsalamanca.com e intentare encontrar una solucion.
+
+¡Espero que Iberdrolux te sea util para ahorrar en tu proxima factura de la luz!
