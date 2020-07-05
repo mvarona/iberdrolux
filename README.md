@@ -31,7 +31,7 @@ En primer lugar, es necesario estar **registrado en el área clientes** de **I-D
 Una vez completado el registro y la verificación del email, **accede a tu cuenta** con el usuario y contraseña que hayas elegido. Deberías poder ver tu consumo y potencia recientes, entre otroas muchas opciones.
 
 ### 3. Consigue tu consumo en archivo .json
-Con la sesión iniciada en <a href='https://www.i-de.es' target='_blank'>i-de.es</a>, **accede a la siguiente dirección** desde tu navegador:
+Con la sesión iniciada en <a href='https://www.i-de.es'>i-de.es</a>, **accede a la siguiente dirección** desde tu navegador:
 https://www.i-de.es/consumidores/rest/consumoNew/obtenerDatosConsumoPeriodo/fechaInicio/01-01-201900:00:00/fechaFinal/31-12-201900:00:00/
 
 Modificando los valores *01-01-201900:00:00* y *31-12-201900:00:00* en función del intervalo de días para los que quieras obtener el consumo horario. En este ejemplo, el navegador mostrará los consumos energéticos para cada hora de 2019, mostrando por tanto un total de 8760 consumos horarios (24 horas * 365 días).
@@ -52,6 +52,6 @@ Instalar Python 3 es muy fácil en cualquier sistema operativo, tienes más info
 <hr/>
 
 ### ¿La URL para obtener el consumo horario ya no funciona?
-Abre un issue o escríbeme a <a href='mailto:m.varona@bmsalamanca.com' target='_blank'>m.varona@bmsalamanca.com</a> e intentaré encontrar una solución.
+Abre un issue o escríbeme a <a href='mailto:m.varona@bmsalamanca.com'>m.varona@bmsalamanca.com</a> e intentaré encontrar una solución.
 
 ¡Espero que Iberdrolux te sea útil para ahorrar en tu próxima factura de la luz!
