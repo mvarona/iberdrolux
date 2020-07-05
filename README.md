@@ -9,7 +9,7 @@ El programa aplica la tarifa deseada a los datos de consumo horario proporcionad
 
 Tras ejecutarlo, se obtendrá algo como lo siguiente:
 
-<img src="images/output.png" alt="Resultado de Iberdrolux" width="600"/>
+<img src="images/output.png" alt="Resultado de Iberdrolux" width="900"/>
 
 Independientemente de la empresa que te comercialice la electricidad, este programa sólo funciona con datos de consumo procedentes de Iberdrola Distribución Eléctrica. En España, las distribudoras eléctricas se distribuyen por zonas geográficas, atendiendo aproximadamente al siguiente reparto:
 
