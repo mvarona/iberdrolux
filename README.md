@@ -42,6 +42,6 @@ Ejecutar un archivo de Python es muy fácil en cualquier sistema operativo, tien
 Instalar Python 3 es muy fácil en cualquier sistema operativo, tienes más información de cómo hacerlo aquí: https://tecnonucleous.com/2018/01/28/como-instalar-pip-para-python-en-windows-mac-y-linux/
 
 ### ¿La URL para obtener el consumo horario ya no funciona?
-Abre un issue o escribeme a m.varona@bmsalamanca.com e intentare encontrar una solucion.
+Abre un issue o escríbeme a <a href='mailto:m.varona@bmsalamanca.com' target='_blank'>m.varona@bmsalamanca.com</a> e intentaré encontrar una solución.
 
-¡Espero que Iberdrolux te sea util para ahorrar en tu proxima factura de la luz!
+¡Espero que Iberdrolux te sea útil para ahorrar en tu próxima factura de la luz!
