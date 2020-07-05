@@ -16,6 +16,7 @@ Independientemente de la empresa que te comercialice la electricidad, este progr
 <img src="images/mapa-distribuidoras.png" alt="Mapa de distribuidoras eléctricas en España" width="300"/>
 (Fuente: https://alcanzia.es/blog/distribuidoras-electricas-en-espana-por-zonas/)
 
+<br/>
 Puedes consultar cuál es tu distribuidora a través del CUPS o contactando con tu comercializadora.
 
 # Instrucciones:
