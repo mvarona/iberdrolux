@@ -55,3 +55,12 @@ Instalar Python 3 es muy fácil en cualquier sistema operativo, tienes más info
 Abre un issue o escríbeme a <a href='mailto:m.varona@bmsalamanca.com'>m.varona@bmsalamanca.com</a> e intentaré encontrar una solución.
 
 ¡Espero que Iberdrolux te sea útil para ahorrar en tu próxima factura de la luz!
+
+<hr/>
+<hr/>
+
+# Notas
+En el repositorio encontrarás también archivos de muestra (*test_1_1_2017.json*, *test_1-2_1_2017.json*, *test_2017.json*) para probar el funcionamiento del programa y mostrar la forma que deberían tener los archivos *.json* descargados de https://www.i-de.es. Contienen valores de ejemplo para los días 1/1/2017, 1/1/2017 - 2/1/2017 y 1/1/2017 - 31/12/2017, respectivamente.
+Además, el archivo de Excel *test_dia.xlsx* permite calcular de forma más gráfica los valores para un día concreto, introduciendo los mismos valores de entrada por parte del usuario.
+
+Recuerde que el programa calcula una tarifa ad-hoc por ejecución, por lo que en caso de aplicarse más de una tarifa distinta en la factura anual (por ejemplo, horarios distintos en invierno o en verano), se debe fragmentar el conjunto de datos y aplicar individualmente el cálculo a cada fragmento. Es decir, en el caso de una factura anual con distinción estacionaria, se debería usar un conjunto de datos para invierno y otro para verano.
