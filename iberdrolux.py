@@ -272,13 +272,18 @@ result = []
 
 for hour in hours:
 
-  day.hourly_consumption.append(float(hour['valor']) / WH_TO_KWH)
+  if (hour is None):
+    day.hourly_consumption.append(float(0))
+  else:
+    day.hourly_consumption.append(float(hour['valor']) / WH_TO_KWH)
 
   if (len(day.hourly_consumption) == HOURS_IN_DAY or hour == hours[-1]):
     day.consumption = sum(day.hourly_consumption)
     day.cost = calculateCostForDay(day.hourly_consumption, power, powerPrice, normalPrice, discountedPrice, beginDiscountHour, endDiscountHour, numYear)
 
-    month.days.append(day)
+    if (day not in month.days):
+      month.days.append(day)
+
     numDay += 1
 
     if (numDay > getNumberDaysForMonth(numMonth, numYear) or hour == hours[-1]):
@@ -292,7 +297,8 @@ for hour in hours:
       month.consumption = month_consumption
       month.cost = month_cost
 
-      year.months.append(month)
+      if (month not in year.months):
+        year.months.append(month)
 
       year_consumption = 0
       year_cost = 0
@@ -304,7 +310,8 @@ for hour in hours:
       year.consumption = year_consumption
       year.cost = year_cost
 
-      result.append(year)
+      if (year not in result):
+        result.append(year)
 
       numDay = MIN_DAY
       numMonth = getNextMonth(numMonth)
